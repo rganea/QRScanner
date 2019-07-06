@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScanCodeActivity">
+    tools:context="com.example.qrscanner.ScanCodeActivity">
 
 </android.support.constraint.ConstraintLayout>
