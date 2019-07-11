@@ -127,7 +127,7 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan result");
+        builder.setTitle("Your QR code was saved");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

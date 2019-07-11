@@ -1,6 +1,7 @@
 package com.example.qrscanner;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +19,28 @@ import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
 public class TokenActivity extends AppCompatActivity {
 
-   RingProgressBar ringProgressBar;
+    private CountDownTimer timer;
+
+    RingProgressBar ringProgressBar;
 
    int progress=0;
+
+   //Schedule a countdown until a time in the future, with regular notifications on intervals along the way.
+    // Example of showing a 30 second countdown in a text field:
+    //
+    // new CountDownTimer(30000, 1000) {
+    //
+    //     public void onTick(long millisUntilFinished) {
+    //         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+    //     }
+    //
+    //     public void onFinish() {
+    //         mTextField.setText("done!");
+    //     }
+    //  }.start();
+
+
+
 
    Handler myHandler = new Handler(){
        @Override
@@ -29,6 +49,13 @@ public class TokenActivity extends AppCompatActivity {
               if(progress<100){
                   progress++;
                   ringProgressBar.setProgress(progress);
+                  ringProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
+                      @Override
+                      public void progressToComplete() {
+                         Toast.makeText(TokenActivity.this,"Completed", Toast.LENGTH_SHORT).show();
+                         //ringProgressBar.setProgress(progress);
+                      }
+                  });
               }
           }
        }
@@ -40,12 +67,6 @@ public class TokenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_token);
 
         ringProgressBar = (RingProgressBar) findViewById(R.id.progressBar);
-        ringProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
-            @Override
-            public void progressToComplete() {
-                Toast.makeText(TokenActivity.this,"Completed",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         new Thread(new Runnable() {
             @Override
@@ -54,6 +75,7 @@ public class TokenActivity extends AppCompatActivity {
                     try{
                         Thread.sleep(100);
                         myHandler.sendEmptyMessage(0);
+                        //myHandler.postDelayed(this,1);
                     }catch (InterruptedException ex){
                         ex.printStackTrace();
                     }

@@ -21,7 +21,6 @@
         app:ringProgressColor="@color/colorPrimaryDark"
         app:ringWidth="3dp"
         app:style="FILL"
-        app:testIsShow="true"
         app:textColor="@color/colorPrimary"
         app:textSize="16dp" />
 </android.support.constraint.ConstraintLayout>
