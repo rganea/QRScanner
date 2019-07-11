@@ -3,7 +3,6 @@ package com.example.qrscanner;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -12,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.qrscanner.QRStorage.ApplicationPreferences;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -120,25 +120,24 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
-        final String scanResult = result.getText();
+        final String scanResult = result.getText().toString();
+        ApplicationPreferences preferences = ApplicationPreferences.getInstance(this);
+        preferences.setCredentialsSaveEnabled(true);
+        preferences.saveQR(scanResult); //we saved the QR code
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan result");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(ScanCodeActivity.this);
-            }
-        });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scanResult));
+                Intent intent = new Intent(getApplicationContext(),TokenActivity.class);
+                startActivity(intent);
 
             }
         });
-        builder.setMessage(scanResult);
         AlertDialog alert = builder.create();
         alert.show();
-
     }
 }

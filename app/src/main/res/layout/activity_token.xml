@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.example.qrscanner.TokenActivity">
 
-    <ProgressBar
+    <io.netopen.hotbitmapgg.library.view.RingProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="272dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="260dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:max="100"
+        app:ringProgressColor="@color/colorPrimaryDark"
+        app:ringWidth="3dp"
+        app:style="FILL"
+        app:testIsShow="true"
+        app:textColor="@color/colorPrimary"
+        app:textSize="16dp" />
 </android.support.constraint.ConstraintLayout>

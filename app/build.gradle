@@ -28,4 +28,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
+
+    implementation 'com.github.HotBitmapGG:RingProgressBar:V1.2.2'
 }

@@ -1,50 +1,19 @@
 package com.example.qrscanner.Library;
 
-/**
- Copyright (c) 2011 IETF Trust and the persons identified as
- authors of the code. All rights reserved.
-
- Redistribution and use in source and binary forms, with or without
- modification, is permitted pursuant to, and subject to the license
- terms contained in, the Simplified BSD License set forth in Section
- 4.c of the IETF Trust's Legal Provisions Relating to IETF Documents
- (http://trustee.ietf.org/license-info).
- */
-
 import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigInteger;
 import java.security.GeneralSecurityException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 
-/**
- * This is an example implementation of the OATH
- * TOTP algorithm.
- * Visit www.openauthentication.org for more information.
- *
- * @author Johan Rydell, PortWise, Inc.
- */
-
 public class TOTP {
 
-    private TOTP() {}
+    private TOTP() {
 
-    /**
-     * This method uses the JCE to provide the crypto algorithm.
-     * HMAC computes a Hashed Message Authentication Code with the
-     * crypto hash algorithm as a parameter.
-     *
-     * @param crypto: the crypto algorithm (HmacSHA1, HmacSHA256,
-     *                             HmacSHA512)
-     * @param keyBytes: the bytes to use for the HMAC key
-     * @param text: the message or text to be authenticated
-     */
+    }
+
 
     private static byte[] hmac_sha(String crypto, byte[] keyBytes,
                                    byte[] text){
@@ -59,15 +28,6 @@ public class TOTP {
             throw new UndeclaredThrowableException(gse);
         }
     }
-
-
-    /**
-     * This method converts a HEX string to Byte[]
-     *
-     * @param hex: the HEX string
-     *
-     * @return: a byte array
-     */
 
     private static byte[] hexStr2Bytes(String hex){
         // Adding one byte to get the right conversion
@@ -85,17 +45,6 @@ public class TOTP {
             // 0 1  2   3    4     5      6       7        8
             = {1,10,100,1000,10000,100000,1000000,10000000,100000000 };
 
-    /**
-     * This method generates a TOTP value for the given
-     * set of parameters.
-     *
-     * @param key: the shared secret, HEX encoded
-     * @param time: a value that reflects a time
-     * @param returnDigits: number of digits to return
-     *
-     * @return: a numeric String in base 10 that includes
-     *              {@link truncationDigits} digits
-     */
 
     public static String generateTOTP(String key,
                                       String time,
@@ -103,36 +52,12 @@ public class TOTP {
         return generateTOTP(key, time, returnDigits, "HmacSHA1");
     }
 
-
-    /**
-     * This method generates a TOTP value for the given
-     * set of parameters.
-     *
-     * @param key: the shared secret, HEX encoded
-     * @param time: a value that reflects a time
-     * @param returnDigits: number of digits to return
-     *
-     * @return: a numeric String in base 10 that includes
-     *              {@link truncationDigits} digits
-     */
-
     public static String generateTOTP256(String key,
                                          String time,
                                          String returnDigits){
         return generateTOTP(key, time, returnDigits, "HmacSHA256");
     }
 
-    /**
-     * This method generates a TOTP value for the given
-     * set of parameters.
-     *
-     * @param key: the shared secret, HEX encoded
-     * @param time: a value that reflects a time
-     * @param returnDigits: number of digits to return
-     *
-     * @return: a numeric String in base 10 that includes
-     *              {@link truncationDigits} digits
-     */
 
     public static String generateTOTP512(String key,
                                          String time,
@@ -169,6 +94,7 @@ public class TOTP {
 
         // Get the HEX in a Byte[]
         byte[] msg = hexStr2Bytes(time);
+        //WHERE THE KEY IS THE QR CODE
         byte[] k = hexStr2Bytes(key);
 
         byte[] hash = hmac_sha(crypto, k, msg);
@@ -191,8 +117,11 @@ public class TOTP {
         return result;
     }
 
+
+
     public static void main(String[] args) {
-        // Seed for HMAC-SHA1 - 20 bytes
+       // generateToken();
+        /*// Seed for HMAC-SHA1 - 20 bytes
         String seed = "3132333435363738393031323334353637383930";
         // Seed for HMAC-SHA256 - 32 bytes
         String seed32 = "3132333435363738393031323334353637383930" +
@@ -247,6 +176,7 @@ public class TOTP {
             }
         }catch (final Exception e){
             System.out.println("Error : " + e);
-        }
+        }*/
+
     }
 }
