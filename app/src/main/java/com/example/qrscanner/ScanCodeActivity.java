@@ -125,14 +125,13 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         preferences.setCredentialsSaveEnabled(true);
         preferences.saveQR(scanResult); //we saved the QR code
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Your QR code was saved");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(ScanCodeActivity.this);
-                Intent intent = new Intent(getApplicationContext(),TokenActivity.class);
+                Intent intent = new Intent(getApplicationContext(),TokenActivity2.class);
                 startActivity(intent);
 
             }

@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TokenActivity" />
+        <activity android:name=".TokenActivity2" />
         <activity android:name=".ScanCodeActivity" />
         <activity android:name=".MainActivity">
 

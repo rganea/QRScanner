@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }else{
             preferences.getLastStoredQR();
-            Intent intent = new Intent(getApplicationContext(),TokenActivity.class);
+            Intent intent = new Intent(getApplicationContext(),TokenActivity2.class);
             startActivity(intent);
         }
         //else, the token activity will be triggered

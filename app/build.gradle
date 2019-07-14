@@ -30,4 +30,5 @@ dependencies {
     implementation 'me.dm7.barcodescanner:zxing:1.9'
 
     implementation 'com.github.HotBitmapGG:RingProgressBar:V1.2.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
