@@ -90,10 +90,13 @@ public class TOTP {
         while (time.length() < 16 )
             time = "0" + time;
 
+        //System.out.println(time);
         // Get the HEX in a Byte[]
         byte[] msg = hexStr2Bytes(time);
+
         //WHERE THE KEY IS THE QR CODE
         byte[] k = hexStr2Bytes(key);
+        //System.out.println(k);
 
         byte[] hash = hmac_sha(crypto, k, msg);
 
@@ -114,5 +117,6 @@ public class TOTP {
         }
         return result;
     }
+
 
 }

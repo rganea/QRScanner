@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             preferences.getLastStoredQR();
             Intent intent = new Intent(getApplicationContext(),TokenActivity2.class);
             startActivity(intent);
+            System.out.println(System.currentTimeMillis());
         }
         //else, the token activity will be triggered
     }
